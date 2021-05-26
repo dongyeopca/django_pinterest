@@ -3,3 +3,4 @@ myvenv/
 db.sqlite3
 migrations/
 _pycache_/
+media/
