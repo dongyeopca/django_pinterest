@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+        <p>
+            {{target_user.date_joined}}
+        </p>
+        {% if target_user.profile %}
+        {% if target_user.profile.image %}
+        <img src="{{ target_user.profile.image.url}}" alt="profile_image" style="height:8rem; width:8rem; border-radius:50%;">
+        {% endif %}
+        <h2 style="font-family: 'NanumSqureB'; margin-top: 1rem;">
+            {{target_user.profile.nickname}}
+        </h2>
+        {% if target_user == user %}
+        <p><a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+            edit
+        </a></p>
+        {% endif %}
+        {{target_user.profile.message}}
+        {% else %}
+        {% if target_user == user %}
+        <a href="{% url 'profileapp:create' %}">
+            <h2 style="font-family: 'NanumSqureB';">
+            Create Profile
+            </h2>
+        </a>
+        {% else %}
+        <h2>
+            닉네임 미설정
+        </h2>
+        {% endif %}
+        {% endif %}
+
+        {% if target_user == user %}
+        <a href="{% url 'Account:update' pk=user.pk %}">
+            <p>
+                Change Info
+            </p>
+        </a>
+        <a href="{% url 'Account:delete' pk=user.pk %}">
+            <p>
+                Quit
+            </p>
+        </a>
+        {% endif %}
+        </div>
+</div>
+
+{% endblock %}

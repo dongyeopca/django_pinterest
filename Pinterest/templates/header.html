@@ -1,0 +1,26 @@
+
+<div class="pragmatic_header">
+    <div>
+        <h1 class="pragmatic_logo">Pragmatic</h1>
+    </div>
+    <div>
+        <span>nav1</span>
+        <span>nav1</span>
+        <span>nav1</span> 
+        {% if not user.is_authenticated %}
+        <a href="{% url 'Account:login' %}?next={{request.path}}">
+            <span>Login</span>
+        </a>
+        <a href="{% url 'Account:create' %}?next={{request.path}}">
+            <span>SignUp</span>
+        </a>
+        {% else %}
+        <a href="{% url 'Account:detail' pk=user.pk %}">
+            <span>Mypage</span>
+        </a>
+        <a href="{% url 'Account:logout' %}?next={{request.path}}">
+            <span>Logout</span>
+        </a>
+        {% endif %}
+    </div>
+</div>
