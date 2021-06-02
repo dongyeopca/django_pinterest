@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div style="text-align: center;">
+        <h1>
+            {{ target_article.title}}
+        </h1>
+        <h5>
+            {{ target_article.writer}}
+        </h5>
+        <div style="height: 2rem;">
+            <a href="{% url 'likeapp:like' pk=target_article.pk %}">
+            <i style="vertical-align:middle; color: rgb(250, 67, 67);"class="material-icons">
+                favorite
+            </i>
+            </a>
+            <span style="vertical-align:middle;">
+                {{target_article.like}}
+            </span>
+
+        </div>
+        <h5>
+            {{ target_article.writer.profile.nickname}}
+        </h5>
+        <img style="border-radius: 1rem;" src="{{ target_article.image.url }}">
+        <div class="text-left">
+            {{ target_article.content | safe }}
+        </div>
+        {% if target_article.writer == user%}
+        <a href="{% url 'articleapp:update' pk=target_article.pk %}">
+            <p class="btn btn-primary rounded-pill">Update Article</p>
+        </a><br>
+        <a href="{% url 'articleapp:delete' pk=target_article.pk %}">
+            <p class="btn btn-danger rounded-pill">Delete Article</p>
+        </a>
+        {% endif %}
+        <hr>
+        {% for comment in target_article.comment.all %}
+        <div class="card">
+            <div class="card-body">
+        <p><span>작성자</span>:{{comment.writer}}</p>
+        <p><span>내용</span>:{{comment.content}}</p>
+                {% if comment.writer == user %}
+                <div style="text-align: right;">
+                <a href="{% url 'commentapp:delete' pk=comment.pk%}">
+                    Delete
+                </a></div>
+                {% endif %}
+        </div>
+
+        {% endfor %}
+        {% include 'commentapp/create.html' with article=target_article %}
+
+
+    </div>
+</div>
+{% endblock %}

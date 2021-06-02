@@ -1,24 +1,30 @@
 
 <div class="pragmatic_header">
     <div>
-        <h1 class="pragmatic_logo">Pragmatic</h1>
+        <h1 class="pragmatic_logo">Dong's Blog</h1>
     </div>
-    <div>
-        <span>nav1</span>
-        <span>nav1</span>
-        <span>nav1</span> 
+    <div class="pragmatic_header_navbar">
+        <a href="{% url 'articleapp:list' %}?next={{request.path}}" class="pragmatic_header_nav">
+            <span>main</span>
+        </a>
+        <a href="{% url 'projectapp:list' %}?next={{request.paht}}" class="pragmatic_header_nav">
+            <span>Projects</span>
+        </a>
         {% if not user.is_authenticated %}
-        <a href="{% url 'Account:login' %}?next={{request.path}}">
+        <a href="{% url 'Account:login' %}?next={{request.path}}" class="pragmatic_header_nav">
             <span>Login</span>
         </a>
-        <a href="{% url 'Account:create' %}?next={{request.path}}">
+        <a href="{% url 'Account:create' %}?next={{request.path}}" class="pragmatic_header_nav">
             <span>SignUp</span>
         </a>
         {% else %}
-        <a href="{% url 'Account:detail' pk=user.pk %}">
+        <a href="{% url 'subscribeapp:list' %}" class="pragmatic_header_nav">
+            <span>subscribe</span>
+        </a>
+        <a href="{% url 'Account:detail' pk=user.pk %}" class="pragmatic_header_nav">
             <span>Mypage</span>
         </a>
-        <a href="{% url 'Account:logout' %}?next={{request.path}}">
+        <a href="{% url 'Account:logout' %}?next={{request.path}}" class="pragmatic_header_nav">
             <span>Logout</span>
         </a>
         {% endif %}

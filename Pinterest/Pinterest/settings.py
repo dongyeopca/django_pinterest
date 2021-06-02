@@ -37,7 +37,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,6 +53,10 @@ INSTALLED_APPS = [
     'bootstrap4',
     'profileapp',
     'articleapp',
+    'commentapp',
+    'projectapp',
+    'subscribeapp',
+    'likeapp'
 ]
 
 MIDDLEWARE = [
@@ -145,5 +149,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = reverse_lazy('Account:index')
-LOGOUT_REDIRECT_URL = reverse_lazy('Account:index')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('Account:login')

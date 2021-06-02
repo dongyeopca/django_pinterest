@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+<style>
+    .container{
+        padding: 0;
+        margin: 0,auto;
+    }
+    .container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+.container img{
+      width: 7rem;
+      height: 7rem;
+      object-fit: cover;
+      border-radius: 1rem;
+  }
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color:black;
+    text-decoration: none;
+}
+</style>
+{% if project_list %}
+<div class="container">
+    {% for project in project_list %}
+    <a href="{% url 'projectapp:detail' pk=project.pk %}">
+        {% include './snippets/card_project.html' with project=project%}
+    </a>
+    {% endfor %}
+</div>
+<script src="{% static 'js/magicgird.js' %}"></script>
+{% else %}
+<div style="text-align: center;">
+    <h1>No Article Yet!</h1>
+</div>
+{% endif %}
+
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+  <div style="text-align: center;">
+      <a href="{% url 'projectapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
+          Create Project
+      </a>
+  </div>
+
+{% endblock %}

@@ -1,52 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block extrahead %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}"> -->
 {% endblock %}
 {% block content %}
-
+<style>
+    .container{
+        padding: 0;
+        margin: 0,auto;
+    }
+    .container a{
+        width: 45%;;
+        max-width: 250px;
+    }
+    .container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+.container img{
+      width:100%;
+      border-radius: 1rem;
+  }
+</style>
+{% if article_list %}
 <div class="container">
-    <div class="item1">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item2">
-        <img src="https://picsum.photos/200/100">
-    </div>
-    <div class="item3">
-        <img src="https://picsum.photos/200/400">
-    </div>
-    <div class="item4">
-        <img src="https://picsum.photos/100/300">
-    </div>
-    <div class="item5">
-        <img src="https://picsum.photos/400/300">
-    </div>
-    <div class="item6">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item7">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item8">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item9">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item10">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item11">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item12">
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div class="item13">
-        <img src="https://picsum.photos/200/300">
-    </div>
-  </div>
-
+    {% for article in article_list %}
+    <a href="{% url 'articleapp:detail' pk=article.pk %}">
+        {% include 'snippets/card.html' with article=article %}
+    </a>
+    {% endfor %}
+</div>
 <script src="{% static 'js/magicgird.js' %}"></script>
+{% else %}
+<div style="text-align: center;">
+    <h1>No Article Yet!</h1>
+</div>
+{% endif %}
+
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+  <div style="text-align: center;">
+      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
+          Create Article
+      </a>
+  </div>
 
 {% endblock %}

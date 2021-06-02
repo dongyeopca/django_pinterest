@@ -13,13 +13,13 @@
         {% endif %}
         <h2 style="font-family: 'NanumSqureB'; margin-top: 1rem;">
             {{target_user.profile.nickname}}
-        </h2>
         {% if target_user == user %}
-        <p><a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+        <a class="material-icons" style="box-shadow:0 0 4px #ccc0c0; border-radius: 50%; padding:0.2rem;"
+            href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
             edit
-        </a></p>
+        </a></h2>
         {% endif %}
-        {{target_user.profile.message}}
+        <h6>{{target_user.profile.message}}</h6>
         {% else %}
         {% if target_user == user %}
         <a href="{% url 'profileapp:create' %}">
@@ -35,17 +35,20 @@
         {% endif %}
 
         {% if target_user == user %}
-        <a href="{% url 'Account:update' pk=user.pk %}">
-            <p>
-                Change Info
-            </p>
+        <a class="material-icons" style="box-shadow:0 0 4px #ccc0cc; border-radius: 50%; padding:0.2rem;"
+        href="{% url 'Account:update' pk=user.pk %}">
+                settings    
         </a>
-        <a href="{% url 'Account:delete' pk=user.pk %}">
-            <p>
-                Quit
-            </p>
+        <a class="material-icons" style="box-shadow:0 0 4px #f10c0c; border-radius: 50%; padding:0.2rem;"
+        href="{% url 'Account:delete' pk=user.pk %}">
+            
+                cancel
+            
         </a>
         {% endif %}
+        </div>
+        <div>
+            {% include 'snippets/list_pragment.html' with article_list=object_list %}
         </div>
 </div>
 

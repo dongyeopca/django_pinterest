@@ -112,7 +112,7 @@ MagicGrid.prototype.init = function init () {
     var style = this.items[i].style;
 
     style.position = "absolute";
-  
+
     if (this.animate) {
       style.transition = (this.useTransform ? "transform" : "top, left") + " 0.2s ease";
     }
@@ -275,19 +275,19 @@ MagicGrid.prototype.listen = function listen () {
 };
 
 let magicGrid = new MagicGrid({
-    container: '.container',
-    animate: true,
-    gutter: 30,
-    static: true,
-    useMin: true
-  });
+container: '.container',
+animate: true,
+gutter: 12,
+static: true,
+useMin: true
+});
 
-var mansorys = document.getElementsByTagName("img");
+var masonrys = document.getElementsByTagName("img");
 
-for (let i=0; i<mansorys.lenght; i++){
-    mansorys[i].addEventListener('load',function(){
+for (let i = 0; i < masonrys.length; i++){
+    masonrys[i].addEventListener('load', function(){
         magicGrid.positionItems();
-    },false);
+    }, false);
 }
 
 magicGrid.listen();

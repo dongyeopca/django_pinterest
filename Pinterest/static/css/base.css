@@ -15,4 +15,23 @@
     text-align:center;
     margin: 2rem 0;
 }
+.pragmatic_header_nav{
+    margin: 0.5rem;
+}
+.pragmatic_header_navbar{
+    margin-top: 1rem;
+}
 
+a{
+    color:black;
+    text-decoration:none;
+}
+a:hover{
+    color:black;
+    text-decoration: none;
+}
+@media screen and (max-width:500px){
+    html{
+        font-size: 13px;
+    }
+}

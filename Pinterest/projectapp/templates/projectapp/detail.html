@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div style="text-align: center; max-width: 500px; margin: 2rem auto;">
+    <img src="{{target_project.image.url}}" style="height:12rem; width:12rem; border-radius:50%; margin-bottom:2rem;">
+    <h2 style="font-family: 'NanumSqureB';">
+        {{target_project.title}}
+    </h2>
+    <h5 style="margin-bottom: 1rem;">
+        {{target_project.description}}
+    </h5>
+    </div>
+    <div class="text-center">
+        {% if user.is_authenticated %}
+        {% if not subscription %}
+        <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{target_project.pk}}" class="btn btn-primary mb-3">
+            subscribe
+        </a>  
+        {% else %}
+        <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{target_project.pk}}" class="btn btn-danger mb-3">
+            unsubscribe
+        </a> 
+        {% endif %}
+        {% endif %} 
+     </div>
+    <div>
+        {% include 'snippets/list_pragment.html' with article_list=object_list %}
+    </div>
+</div>  
+{% endblock %}
